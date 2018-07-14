@@ -1,0 +1,7 @@
+install: gradle wrapper --gradle-version 4.2
+language: java
+jdk:
+  - oraclejdk8
+script: 
+  - ./gradlew test --scan -s
+  - ./gradlew build --scan -s
