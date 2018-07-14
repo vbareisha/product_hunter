@@ -1,4 +1,4 @@
-package com.bareisha.producthunter;
+package com.bareisha.producthunter.web;
 
 import org.springframework.boot.SpringBootConfiguration;
 
