@@ -37,9 +37,6 @@ public class HealthStatusControllerTest {
 	@Autowired
 	private ObjectMapper objectMapper;
 
-	@Autowired
-	private WebApplicationContext wac;
-
 	private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
 			MediaType.APPLICATION_JSON.getSubtype(),
 			Charset.forName("utf8"));
@@ -54,6 +51,10 @@ public class HealthStatusControllerTest {
 	@InjectMocks
 	private HealthStatusController healthStatusController;
 
+	/**
+	 * Test for health controller
+	 * @throws Exception
+	 */
 	@Test
 	public void checkStatus() throws Exception {
 		setup();
