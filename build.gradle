@@ -31,4 +31,7 @@ dependencies {
     compileOnly('org.projectlombok:lombok')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
+
+    // other dependency
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
 }

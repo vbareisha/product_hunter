@@ -17,7 +17,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.nio.charset.Charset;
 import java.util.Map;
@@ -60,7 +59,8 @@ public class HealthStatusControllerTest {
 		setup();
 		HttpHeaders headers = new HttpHeaders();
 
-		MvcResult mvcResult = this.mockMvc.perform(get("/status").contentType(contentType).headers(headers))
+		MvcResult mvcResult = this.mockMvc
+				.perform(get("/status").contentType(contentType).headers(headers))
 				.andExpect(status().isOk()).andReturn();
 		Map response = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), Map.class);
 		Assert.assertTrue(response.containsKey("status"));
