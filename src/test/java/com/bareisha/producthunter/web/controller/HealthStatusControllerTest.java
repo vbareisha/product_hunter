@@ -1,5 +1,6 @@
 package com.bareisha.producthunter.web.controller;
 
+import com.bareisha.producthunter.service.api.IParserHtml;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,9 +10,11 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,14 +27,15 @@ import java.util.Map;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(classes = HealthStatusTestConfiguration.class)
+@SpringBootTest(classes = {HealthStatusTestConfiguration.class})
 @EnableAutoConfiguration
-@ComponentScan(basePackages = "com.bareisha.producthunter.web.controller")
 @RunWith(SpringRunner.class)
-@WebAppConfiguration
 public class HealthStatusControllerTest {
 
 	private MockMvc mockMvc;
+
+	@MockBean
+	private IParserHtml parserHtml;
 
 	@Autowired
 	private ObjectMapper objectMapper;
