@@ -22,7 +22,7 @@ public class EDostavkaParser implements IParserHtml {
 
     @Override
     public List<ProductDto> parse(String path) {
-        List<ProductDto> resultList = new ArrayList<>();
+        List<ProductDto> resultList;
         try {
             Document document = Jsoup.connect(path).get();
             resultList = getDocumentData(document);
@@ -36,7 +36,7 @@ public class EDostavkaParser implements IParserHtml {
 
     @Override
     public List<ProductDto> parseFile(String path) {
-        List<ProductDto> resultList = new ArrayList<>();
+        List<ProductDto> resultList;
         try {
             File file = new File(path);
             Document document = Jsoup.parse(file, "UTF-8");
@@ -78,7 +78,6 @@ public class EDostavkaParser implements IParserHtml {
     private BigDecimal getBigDecimalPriceFromString(String itemPrice) {
         String mainPrice = itemPrice.substring(0, itemPrice.indexOf("р"));
         String digitPrice = itemPrice.substring(itemPrice.indexOf("р") + 2, itemPrice.indexOf("к"));
-        BigDecimal price = new BigDecimal(mainPrice + "." + digitPrice);
-        return price;
+        return new BigDecimal(mainPrice + "." + digitPrice);
     }
 }
