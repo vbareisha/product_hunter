@@ -10,7 +10,7 @@ public interface IParserHtml {
      * @param path -  url
      * @return {@link List<ProductDto>} list of product's after parsing
      */
-    List<ProductDto> parse(String path);
+    List<ProductDto> parse(String url);
 
     /**
      * Parse by path to local file

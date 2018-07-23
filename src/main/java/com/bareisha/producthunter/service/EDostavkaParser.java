@@ -21,15 +21,15 @@ import java.util.List;
 public class EDostavkaParser implements IParserHtml {
 
     @Override
-    public List<ProductDto> parse(String path) {
+    public List<ProductDto> parse(String url) {
         List<ProductDto> resultList;
         try {
-            Document document = Jsoup.connect(path).get();
+            Document document = Jsoup.connect(url).get();
             resultList = getDocumentData(document);
         } catch (IOException e) {
-            log.error("Error in getting data from path = {}", path);
+            log.error("Error in getting data from path = {}", url);
             log.error("Error: {}", e.getMessage());
-            throw new PageByUrlNotFoundException(String.format("Page by path = %s not found!", path));
+            throw new PageByUrlNotFoundException(String.format("Page by path = %s not found!", url));
         }
         return resultList;
     }
@@ -65,10 +65,10 @@ public class EDostavkaParser implements IParserHtml {
                     .select("div.price_byn")
                     .select("div.price").text().split(" ");
             if (tempPriceList.length > 1) {
-                product.setPrice(getBigDecimalPriceFromString(tempPriceList[1]));
-                product.setPriceDiscount(getBigDecimalPriceFromString(tempPriceList[0]));
+                product.setPrice(getBigDecimalPriceFromString(tempPriceList[1]).setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue());
+                product.setPriceDiscount(getBigDecimalPriceFromString(tempPriceList[0]).setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue());
             } else {
-                product.setPriceDiscount(getBigDecimalPriceFromString(tempPriceList[0]));
+                product.setPrice(getBigDecimalPriceFromString(tempPriceList[0]).setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue());
             }
             productDtoList.add(product);
         }
@@ -78,6 +78,6 @@ public class EDostavkaParser implements IParserHtml {
     private BigDecimal getBigDecimalPriceFromString(String itemPrice) {
         String mainPrice = itemPrice.substring(0, itemPrice.indexOf("р"));
         String digitPrice = itemPrice.substring(itemPrice.indexOf("р") + 2, itemPrice.indexOf("к"));
-        return new BigDecimal(mainPrice + "." + digitPrice);
+        return new BigDecimal(Double.valueOf(mainPrice + "." + digitPrice));
     }
 }

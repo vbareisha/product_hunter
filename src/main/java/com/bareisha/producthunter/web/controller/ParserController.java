@@ -20,7 +20,6 @@ public class ParserController {
 
     @GetMapping(value = "/edostavka")
     public ResponseEntity<?> parserEDostavka(@RequestParam(name = "url") String url) {
-        parserHtml.parse(url);
-        return new ResponseEntity<>(OK);
+        return new ResponseEntity<>(parserHtml.parse(url), OK);
     }
 }

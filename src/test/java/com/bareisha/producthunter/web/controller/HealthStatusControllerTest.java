@@ -34,9 +34,6 @@ public class HealthStatusControllerTest {
 
 	private MockMvc mockMvc;
 
-	@MockBean
-	private IParserHtml parserHtml;
-
 	@Autowired
 	private ObjectMapper objectMapper;
 
