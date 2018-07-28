@@ -31,6 +31,10 @@ public class EDostavkaParserTest {
         List<ProductDto> actualProductList = new ArrayList<>();
         if (path != null) {
             actualProductList = parserHtml.parseFile(path.getPath());
+            actualProductList.forEach(productDto -> {
+                productDto.setUuid(null);
+                productDto.setDtUpdate(null);
+            });
         }
         Assert.assertEquals(actualProductList, expectedProductList);
     }

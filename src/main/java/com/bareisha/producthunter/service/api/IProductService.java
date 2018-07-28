@@ -4,6 +4,17 @@ import com.bareisha.producthunter.core.dto.ProductDto;
 
 import java.util.List;
 
-public interface IProductService {
-    List<ProductDto> findAllProducts();
+public interface IProductService<T extends ProductDto> {
+    /**
+     * find all products
+     * @return {@link List<T>}
+     */
+    List<T> findAllProducts();
+
+    /**
+     * save one product
+     * @param source - {@link T}
+     * @return - {@link T}
+     */
+    T saveProduct(T source);
 }

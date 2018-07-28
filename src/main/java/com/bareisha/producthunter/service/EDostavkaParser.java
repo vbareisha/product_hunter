@@ -13,8 +13,10 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -70,6 +72,8 @@ public class EDostavkaParser implements IParserHtml {
             } else {
                 product.setPrice(getBigDecimalPriceFromString(tempPriceList[0]).setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue());
             }
+            product.setDtUpdate(LocalDateTime.now());
+            product.setUuid(UUID.randomUUID());
             productDtoList.add(product);
         }
         return productDtoList;

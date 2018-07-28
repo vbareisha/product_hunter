@@ -36,8 +36,8 @@ dependencies {
     compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
 
     compile('org.postgresql:postgresql')
-    compile('org.hibernate:hibernate-core:5.2.10.Final')
-    compile('org.hibernate:hibernate-entitymanager:5.2.10.Final')
+    compile('org.hibernate:hibernate-core')
+    compile('org.hibernate:hibernate-entitymanager')
     compile('org.hibernate:hibernate-java8')
 
     compile group: 'com.mchange', name: 'c3p0', version: '0.9.5.2'
