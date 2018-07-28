@@ -40,4 +40,5 @@ dependencies {
     compile('org.hibernate:hibernate-entitymanager:5.2.10.Final')
     compile('org.hibernate:hibernate-java8')
 
+    compile group: 'com.mchange', name: 'c3p0', version: '0.9.5.2'
 }

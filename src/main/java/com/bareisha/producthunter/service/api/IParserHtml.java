@@ -7,7 +7,7 @@ import java.util.List;
 public interface IParserHtml {
     /**
      * Parse by url
-     * @param path -  url
+     * @param url -  url
      * @return {@link List<ProductDto>} list of product's after parsing
      */
     List<ProductDto> parse(String url);
