@@ -42,6 +42,7 @@ public class ProductRepositoryTest {
      */
     @Test
     public void crudProductTest() {
+        // Create example
         Product product = new Product();
         product.setCountry("USA");
         product.setDtUpdate(LocalDateTime.now());

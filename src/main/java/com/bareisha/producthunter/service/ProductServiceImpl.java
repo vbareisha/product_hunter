@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Work with database
+ */
 @Service
 @Transactional(readOnly = true)
 public class ProductServiceImpl implements IProductService<ProductDto> {
