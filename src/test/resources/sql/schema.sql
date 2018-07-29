@@ -16,3 +16,6 @@ CREATE UNIQUE INDEX product_uuid_idx
 
 COMMENT ON TABLE product_hunter.products IS 'Таблица с продуктами';
 
+CREATE USER production WITH ENCRYPTED PASSWORD 'root';
+GRANT ALL PRIVILEGES ON DATABASE product_hunter TO production;
+--ALTER USER postgres WITH ENCRYPTED PASSWORD '';
