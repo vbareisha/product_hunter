@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "products", schema = "product_hunter_test", indexes = {
+@Table(name = "products", indexes = {
         @Index(name = "products_pkey", unique = true, columnList = "id"),
         @Index(name = "product_uuid_idx", unique = true, columnList = "uuid")
 })

@@ -1,6 +1,3 @@
-DROP SCHEMA IF EXISTS product_hunter_test CASCADE;
-CREATE SCHEMA product_hunter_test;
-
 DROP TABLE IF EXISTS product_hunter_test.products CASCADE;
 CREATE TABLE product_hunter_test.products (
   id                     BIGSERIAL PRIMARY KEY,
