@@ -5,24 +5,7 @@ jdk:
 services:
   - postgresql
 before_script:
-  - psql -c 'create database product_hunter;
-  DROP SCHEMA IF EXISTS product_hunter_test CASCADE;
-  CREATE SCHEMA product_hunter_test;
-  SET search_path TO product_hunter_test;
-  DROP TABLE IF EXISTS product_hunter_test.products CASCADE;
-  CREATE TABLE product_hunter_test.products (
-    id                     BIGSERIAL PRIMARY KEY,
-    title                  VARCHAR NOT NULL,
-    country                VARCHAR NOT NULL,
-    dt_update              TIMESTAMP WITHOUT TIME ZONE,
-    uuid                   UUID    NOT NULL,
-    price                  NUMERIC,
-    price_discount         NUMERIC
-  );
-  CREATE UNIQUE INDEX product_uuid_idx
-    ON product_hunter_test.products (uuid);
-
-  COMMENT ON TABLE product_hunter_test.products IS 'Таблица с продуктами';' -U postgres
+  - psql -c 'create database product_hunter; CREATE SCHEMA product_hunter_test;' -U postgres
 script:
   - ./gradlew test --scan -s
   - ./gradlew build --scan -s
