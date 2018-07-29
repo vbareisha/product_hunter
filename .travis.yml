@@ -20,5 +20,4 @@ before_script:
              CREATE UNIQUE INDEX product_uuid_idx
                ON product_hunter_test.products (uuid);' -U postgres
 script:
-  - ./gradlew test --scan -s -i
   - ./gradlew build --scan -s -i
