@@ -5,22 +5,24 @@ jdk:
 services:
   - postgresql
 before_script:
-  - psql -c 'create database product_hunter;' -U postgres
-  - psql -c 'DROP SCHEMA IF EXISTS product_hunter_test CASCADE;' -U postgres
-  - psql -c 'CREATE SCHEMA product_hunter_test;' -U postgres
-  - psql -c 'SET search_path TO product_hunter;' -U postgres
-  - psql -c 'DROP TABLE IF EXISTS product_hunter_test.products CASCADE;' -U postgres
-  - psql -c 'CREATE TABLE product_hunter_test.products (
-               id                     BIGSERIAL PRIMARY KEY,
-               title                  VARCHAR NOT NULL,
-               country                VARCHAR NOT NULL,
-               dt_update              TIMESTAMP WITHOUT TIME ZONE,
-               uuid                   UUID    NOT NULL,
-               price                  NUMERIC,
-               price_discount         NUMERIC
-             );
-' -U postgres
-  - psql -c 'CREATE UNIQUE INDEX product_uuid_idx ON product_hunter_test.products (uuid);' -U postgres
+  - psql -c 'create database product_hunter;
+  DROP SCHEMA IF EXISTS product_hunter_test CASCADE;
+  CREATE SCHEMA product_hunter_test;
+  SET search_path TO product_hunter_test;
+  DROP TABLE IF EXISTS product_hunter_test.products CASCADE;
+  CREATE TABLE product_hunter_test.products (
+    id                     BIGSERIAL PRIMARY KEY,
+    title                  VARCHAR NOT NULL,
+    country                VARCHAR NOT NULL,
+    dt_update              TIMESTAMP WITHOUT TIME ZONE,
+    uuid                   UUID    NOT NULL,
+    price                  NUMERIC,
+    price_discount         NUMERIC
+  );
+  CREATE UNIQUE INDEX product_uuid_idx
+    ON product_hunter_test.products (uuid);
+
+  COMMENT ON TABLE product_hunter_test.products IS 'Таблица с продуктами';' -U postgres
 script:
   - ./gradlew test --scan -s
   - ./gradlew build --scan -s
