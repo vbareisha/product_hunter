@@ -19,14 +19,13 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@DataJpaTest
-@RunWith(SpringRunner.class)
-@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
-@DirtiesContext
-@SpringBootTest(classes = {ProductRepositoryTestConfiguration.class})
-@ActiveProfiles("test")
+//@DataJpaTest
+//@RunWith(SpringRunner.class)
+//@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
+//@DirtiesContext
+//@SpringBootTest(classes = {ProductRepositoryTestConfiguration.class})
+//@ActiveProfiles("test")
 public class ProductRepositoryTest {
-
 
     @Autowired
     private TestEntityManager testEntityManager;
