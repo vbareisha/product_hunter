@@ -12,6 +12,8 @@ before_script:
   - psql -c 'grant all on schema public to postgres;' -U postgres
   - psql -c 'CREATE TABLE products (id BIGSERIAL PRIMARY KEY, title VARCHAR NOT NULL, country VARCHAR NOT NULL, dt_update TIMESTAMP WITHOUT TIME ZONE, price NUMERIC, price_discount NUMERIC);' -U postgres
   - psql -c 'SELECT count(id) FROM products;' -U postgres
-  - psql -c 'SELECT * FROM pg_settings WHERE name = 'port';' -U postgres
+  - psql -c 'CREATE UNIQUE INDEX product_uuid_idx ON products (uuid);' -U postgres
+  - psql -c 'SELECT * FROM pg_settings;' -U postgres
+  - psql -c 'SELECT * FROM pg_settings WHERE name = "port";' -U postgres
 script:
   - ./gradlew build --scan -s -i
