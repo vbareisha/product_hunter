@@ -9,15 +9,14 @@ addons:
 before_script:
   - psql -c 'create database product_hunter;' -U postgres
   - psql -c '\c product_hunter;' -U postgres
+  - psql -c 'grant al on schema public to postgres;' -U postgres
   - psql -c 'CREATE TABLE products (
                id                     BIGSERIAL PRIMARY KEY,
                title                  VARCHAR NOT NULL,
                country                VARCHAR NOT NULL,
                dt_update              TIMESTAMP WITHOUT TIME ZONE,
-               uuid                   UUID    NOT NULL,
                price                  NUMERIC,
                price_discount         NUMERIC
              );' -U postgres
-  - psql -c 'CREATE UNIQUE INDEX product_uuid_idx ON products (uuid);' -U postgres
 script:
   - ./gradlew build --scan -s -i
