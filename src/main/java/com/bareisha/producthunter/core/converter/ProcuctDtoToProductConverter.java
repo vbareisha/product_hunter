@@ -14,8 +14,12 @@ public class ProcuctDtoToProductConverter<S, T> implements IConverter<ProductDto
         Product target = new Product();
         target.setTitle(source.getTitle());
         target.setUuid(source.getUuid());
-        target.setPriceDiscount(new BigDecimal(source.getPriceDiscount()));
-        target.setPrice(new BigDecimal(source.getPrice()));
+        if (source.getPriceDiscount() != null) {
+            target.setPriceDiscount(new BigDecimal(source.getPriceDiscount()));
+        }
+        if (source.getPrice() != null) {
+            target.setPrice(new BigDecimal(source.getPrice()));
+        }
         target.setId(source.getId());
         target.setCountry(source.getCountry());
         target.setDtUpdate(source.getDtUpdate());

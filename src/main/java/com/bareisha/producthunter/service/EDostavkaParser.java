@@ -3,11 +3,13 @@ package com.bareisha.producthunter.service;
 import com.bareisha.producthunter.core.dto.ProductDto;
 import com.bareisha.producthunter.core.exception.PageByUrlNotFoundException;
 import com.bareisha.producthunter.service.api.IParserHtml;
+import com.bareisha.producthunter.service.api.IProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -21,6 +23,13 @@ import java.util.UUID;
 @Service
 @Slf4j
 public class EDostavkaParser implements IParserHtml {
+
+    private final IProductService<ProductDto> productService;
+
+    @Autowired
+    public EDostavkaParser(IProductService<ProductDto> productService) {
+        this.productService = productService;
+    }
 
     @Override
     public List<ProductDto> parse(String url) {
@@ -75,6 +84,11 @@ public class EDostavkaParser implements IParserHtml {
             product.setDtUpdate(LocalDateTime.now());
             product.setUuid(UUID.randomUUID());
             productDtoList.add(product);
+        }
+        if (productDtoList.size() > 0) {
+            for (ProductDto item : productDtoList) {
+                productService.saveProduct(item);
+            }
         }
         return productDtoList;
     }
