@@ -26,20 +26,24 @@ repositories {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-//    compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-web')
+
     compileOnly('org.projectlombok:lombok')
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
 
     // other dependency
     compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
-
-//    compile('org.postgresql:postgresql')
-    compile group: 'org.postgresql', name: 'postgresql', version: '9.4-1206-jdbc41'
+    // database
+    compile('org.postgresql:postgresql')
     compile('org.hibernate:hibernate-core')
     compile('org.hibernate:hibernate-entitymanager')
     compile('org.hibernate:hibernate-java8')
-
     compile group: 'com.mchange', name: 'c3p0', version: '0.9.5.2'
+    // end database
+
+    configurations {
+        all*.exclude module: 'HikariCP'
+    }
 }

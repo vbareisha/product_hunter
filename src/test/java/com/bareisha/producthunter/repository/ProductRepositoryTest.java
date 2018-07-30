@@ -29,8 +29,6 @@ public class ProductRepositoryTest {
 
 
     @Autowired
-    private Environment environment;
-    @Autowired
     private TestEntityManager testEntityManager;
 
     @Autowired

@@ -1,17 +1,16 @@
-package com.bareisha.producthunter.repository;
+package com.bareisha.producthunter.core.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -19,14 +18,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 
-@TestConfiguration
-@EnableJpaRepositories(basePackages = "com.bareisha.producthunter.repository.base")
+@Configuration
 @EnableTransactionManagement
-public class ProductRepositoryTestConfiguration {
+@EnableJpaRepositories(basePackages = "com.bareisha.producthunter.repository.base")
+public class RepositoryConfig {
     private final Environment environment;
 
     @Autowired
-    public ProductRepositoryTestConfiguration(Environment environment) {
+    public RepositoryConfig(Environment environment) {
         this.environment = environment;
     }
 
