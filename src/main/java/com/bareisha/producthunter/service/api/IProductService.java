@@ -17,4 +17,9 @@ public interface IProductService<T extends ProductDto> {
      * @return - {@link T}
      */
     T saveProduct(T source);
+
+    /**
+     * Delete all data
+     */
+    void clearAll();
 }

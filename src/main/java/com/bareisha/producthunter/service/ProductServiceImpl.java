@@ -50,4 +50,14 @@ public class ProductServiceImpl implements IProductService<ProductDto> {
         Product target = productDtoProductIConverter.convert(source);
         return productProductDtoIConverter.convert(productRepository.save(target));
     }
+
+    @Override
+    @Transactional
+    public void clearAll() {
+        productRepository.deleteAll();
+    }
+
+    //todo
+    // Вынести в контролер
+    // затем написать тесты
 }
