@@ -19,12 +19,12 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-//@DataJpaTest
-//@RunWith(SpringRunner.class)
-//@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
-//@DirtiesContext
-//@SpringBootTest(classes = {ProductRepositoryTestConfiguration.class})
-//@ActiveProfiles("test")
+@DataJpaTest
+@RunWith(SpringRunner.class)
+@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
+@DirtiesContext
+@SpringBootTest(classes = {ProductRepositoryTestConfiguration.class})
+@ActiveProfiles("test")
 public class ProductRepositoryTest {
 
     @Autowired
@@ -36,7 +36,7 @@ public class ProductRepositoryTest {
     /**
      * CRUD operations for repository
      */
-    //@Test
+    @Test
     public void crudProductTest() {
         // Create example
         Product product = new Product();
