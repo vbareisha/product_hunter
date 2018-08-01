@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS product_hunter_test.products CASCADE;
-CREATE TABLE product_hunter_test.products (
+DROP TABLE IF EXISTS products CASCADE;
+CREATE TABLE products (
   id                     BIGSERIAL PRIMARY KEY,
   title                  VARCHAR NOT NULL,
   country                VARCHAR NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE product_hunter_test.products (
   price_discount         NUMERIC
 );
 CREATE UNIQUE INDEX product_uuid_idx
-  ON product_hunter_test.products (uuid);
+  ON products (uuid);
 
-COMMENT ON TABLE product_hunter_test.products IS 'Таблица с продуктами';
+COMMENT ON TABLE products IS 'Таблица с продуктами';
 
