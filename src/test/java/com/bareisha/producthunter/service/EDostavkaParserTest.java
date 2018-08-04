@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static com.bareisha.producthunter.utils.Util.getProductDtos;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -47,6 +48,11 @@ public class EDostavkaParserTest {
     public void parseFileTest() {
         setup();
         List<ProductDto> expectedProductList = getProductDtos();
+        expectedProductList.forEach(productDto -> {
+            productDto.setUuid(null);
+            productDto.setDtUpdate(null);
+        });
+
         URL path = this.getClass().getClassLoader().getResource("html/" + "test.html");
         List<ProductDto> actualProductList = new ArrayList<>();
         if (path != null) {
@@ -59,29 +65,12 @@ public class EDostavkaParserTest {
         Assert.assertEquals(actualProductList, expectedProductList);
     }
 
-    private List<ProductDto> getProductDtos() {
-        ProductDto product = new ProductDto();
-        product.setTitle("Баклажан 1 кг., фасовка 0.6 - 0.8 кг");
-        product.setCountry("Украина");
-        product.setPrice((new BigDecimal(2.99)).setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue());
-        product.setPriceDiscount((new BigDecimal(2.29)).setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue());
-
-        List<ProductDto> expectedProductList = new ArrayList<>();
-        expectedProductList.add(product);
-        product = new ProductDto();
-        product.setTitle("Баклажан 1 кг., фасовка 0.6 - 0.7 кг");
-        product.setCountry("Испания");
-        product.setPrice((new BigDecimal(4.49)).setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue());
-        product.setPriceDiscount(null);
-        expectedProductList.add(product);
-        return expectedProductList;
-    }
-
     @Test(expected = PageByUrlNotFoundException.class)
     public void parserFileAndGetException() {
         parserHtml.parseFile("testlocalpath.html");
     }
 
+    @SuppressWarnings("Duplicates")
     private void setup() {
         Product productOne = productDtoProductIConverter.convert(getProductDtos().get(0));
         productOne.setUuid(UUID.randomUUID());

@@ -56,8 +56,4 @@ public class ProductServiceImpl implements IProductService<ProductDto> {
     public void clearAll() {
         productRepository.deleteAll();
     }
-
-    //todo
-    // Вынести в контролер
-    // затем написать тесты
 }
