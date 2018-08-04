@@ -44,8 +44,26 @@ public class EDostavkaParserTest {
     @MockBean
     private IProductRepository productRepository;
 
+    @Test(expected = PageByUrlNotFoundException.class)
+    public void parserFileAndGetException() {
+        parserHtml.parseFile("testlocalpath.html");
+    }
+
+    @SuppressWarnings("Duplicates")
+    private void setup() {
+        Product productOne = productDtoProductIConverter.convert(getProductDtos().get(0));
+        productOne.setUuid(UUID.randomUUID());
+        productOne.setDtUpdate(LocalDateTime.now());
+        Product productTwo = productDtoProductIConverter.convert(getProductDtos().get(1));
+        productTwo.setUuid(UUID.randomUUID());
+        productTwo.setDtUpdate(LocalDateTime.now());
+
+        when(productRepository.save(any(Product.class))).thenReturn(productOne);
+        when(productRepository.save(any(Product.class))).thenReturn(productTwo);
+    }
+
     @Test
-    public void parseFileTest() {
+    public void parseFile() {
         setup();
         List<ProductDto> expectedProductList = getProductDtos();
         expectedProductList.forEach(productDto -> {
@@ -63,23 +81,5 @@ public class EDostavkaParserTest {
             });
         }
         Assert.assertEquals(actualProductList, expectedProductList);
-    }
-
-    @Test(expected = PageByUrlNotFoundException.class)
-    public void parserFileAndGetException() {
-        parserHtml.parseFile("testlocalpath.html");
-    }
-
-    @SuppressWarnings("Duplicates")
-    private void setup() {
-        Product productOne = productDtoProductIConverter.convert(getProductDtos().get(0));
-        productOne.setUuid(UUID.randomUUID());
-        productOne.setDtUpdate(LocalDateTime.now());
-        Product productTwo = productDtoProductIConverter.convert(getProductDtos().get(1));
-        productTwo.setUuid(UUID.randomUUID());
-        productTwo.setDtUpdate(LocalDateTime.now());
-
-        when(productRepository.save(any(Product.class))).thenReturn(productOne);
-        when(productRepository.save(any(Product.class))).thenReturn(productTwo);
     }
 }
