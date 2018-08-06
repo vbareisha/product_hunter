@@ -17,7 +17,7 @@ public class ParserController {
     public ParserController(IParserHtml parserHtml) {
         this.parserHtml = parserHtml;
     }
-    //todo test
+
     @GetMapping(value = "/edostavka")
     public ResponseEntity<?> parserEDostavka(@RequestParam(name = "url") String url) {
         return new ResponseEntity<>(parserHtml.parse(url), OK);
