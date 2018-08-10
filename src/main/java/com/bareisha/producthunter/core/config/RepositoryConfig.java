@@ -1,6 +1,7 @@
 package com.bareisha.producthunter.core.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -21,6 +22,7 @@ import java.beans.PropertyVetoException;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.bareisha.producthunter.repository.base")
+@Slf4j
 public class RepositoryConfig {
     private final Environment environment;
 

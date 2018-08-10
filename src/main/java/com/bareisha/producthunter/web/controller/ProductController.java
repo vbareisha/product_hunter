@@ -2,6 +2,7 @@ package com.bareisha.producthunter.web.controller;
 
 import com.bareisha.producthunter.core.dto.ProductDto;
 import com.bareisha.producthunter.service.api.IProductService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("/product")
+@Slf4j
 public class ProductController {
 
     private final IProductService<ProductDto> productService;
@@ -23,6 +25,7 @@ public class ProductController {
 
     @GetMapping(value = "/all")
     public ResponseEntity<?> findAllProducts() {
+        log.debug("FindAll()...");
         return new ResponseEntity<>(productService.findAllProducts(), OK);
     }
 }
