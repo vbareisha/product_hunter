@@ -7,7 +7,7 @@ CREATE TABLE products (
   uuid                   UUID    NOT NULL,
   price                  NUMERIC,
   price_discount         NUMERIC,
-  img                    VARCHAR NOT NULL
+  img                    VARCHAR
 );
 CREATE UNIQUE INDEX product_uuid_idx
   ON products (uuid);
