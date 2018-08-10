@@ -81,6 +81,7 @@ public class EDostavkaParser implements IParserHtml {
             } else {
                 product.setPrice(getBigDecimalPriceFromString(tempPriceList[0]).setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue());
             }
+            product.setImage(element.select("div.img").select("a").select("img[src]").attr("src"));
             product.setDtUpdate(LocalDateTime.now());
             product.setUuid(UUID.randomUUID());
             productDtoList.add(product);

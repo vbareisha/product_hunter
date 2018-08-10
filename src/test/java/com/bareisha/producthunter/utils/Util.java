@@ -19,6 +19,7 @@ public class Util {
         product.setPriceDiscount((new BigDecimal(2.29)).setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue());
         product.setUuid(UUID.randomUUID());
         product.setDtUpdate(LocalDateTime.now());
+        product.setImage("./Баклажан - Каталог товаров_files/144753_190x190@2x.png.jpg");
 
         List<ProductDto> expectedProductList = new ArrayList<>();
         expectedProductList.add(product);
@@ -29,6 +30,7 @@ public class Util {
         product.setPriceDiscount(null);
         product.setUuid(UUID.randomUUID());
         product.setDtUpdate(LocalDateTime.now());
+        product.setImage("./Баклажан - Каталог товаров_files/269518_190x190@2x.png.jpg");
         expectedProductList.add(product);
         return expectedProductList;
     }

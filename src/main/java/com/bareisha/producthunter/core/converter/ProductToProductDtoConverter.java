@@ -22,6 +22,7 @@ public class ProductToProductDtoConverter<S, T> implements IConverter<Product, P
         target.setId(source.getId());
         target.setCountry(source.getCountry());
         target.setDtUpdate(source.getDtUpdate());
+        target.setImage(source.getImage());
         return target;
     }
 }

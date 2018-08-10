@@ -47,6 +47,7 @@ public class ProductRepositoryTest {
         product.setPriceDiscount(new BigDecimal(2));
         product.setUuid(UUID.randomUUID());
         product.setTitle("Title");
+        product.setImage("image");
 
         final Product actualSave = productRepository.save(product);
         Assert.assertNotNull(actualSave.getId());

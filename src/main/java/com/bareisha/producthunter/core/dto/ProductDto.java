@@ -15,4 +15,5 @@ public class ProductDto {
     private UUID uuid;
     private Long id;
     private LocalDateTime dtUpdate;
+    private String image;
 }

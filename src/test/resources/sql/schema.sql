@@ -9,7 +9,8 @@ CREATE TABLE product_hunter.products (
   dt_update              TIMESTAMP WITHOUT TIME ZONE,
   uuid                   UUID    NOT NULL,
   price                  NUMERIC,
-  price_discount         NUMERIC
+  price_discount         NUMERIC,
+  img                    VARCHAR NOT NULL
 );
 CREATE UNIQUE INDEX product_uuid_idx
   ON product_hunter.products (uuid);
