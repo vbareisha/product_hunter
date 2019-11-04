@@ -4,6 +4,7 @@ import com.bareisha.producthunter.core.dto.ProductDto;
 import com.bareisha.producthunter.service.api.IParserHtml;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
@@ -14,13 +15,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static com.bareisha.producthunter.utils.Util.getProductDtos;
@@ -29,12 +30,12 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(classes = {HealthStatusTestConfiguration.class})
+@SpringBootTest(classes = {ParserControllerTestConfiguration.class})
 @EnableAutoConfiguration
 @RunWith(SpringRunner.class)
-@WebAppConfiguration
 @ActiveProfiles("test")
 public class ParserControllerTest {
+
     private MockMvc mockMvc;
 
     @Autowired
@@ -45,9 +46,10 @@ public class ParserControllerTest {
 
     private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
-            Charset.forName("utf8"));
+            StandardCharsets.UTF_8);
 
-    private void setup() {
+    @Before
+    public void setup() {
         MockitoAnnotations.initMocks(this);
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
@@ -57,18 +59,16 @@ public class ParserControllerTest {
 
     @Test
     public void parserEDostavka() throws Exception {
-        setup();
+
         HttpHeaders headers = new HttpHeaders();
-
         List<ProductDto> expect = getProductDtos();
-
         when(parserHtml.parse(anyString())).thenReturn(expect);
 
         MvcResult mvcResult = this.mockMvc
                 .perform(get("/parser/edostavka?url=test").contentType(contentType).headers(headers))
                 .andExpect(status().isOk()).andReturn();
+
         List<ProductDto> actual = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), this.objectMapper.getTypeFactory().constructCollectionType(List.class, ProductDto.class));
         Assert.assertEquals("Objects must be equal!", expect, actual);
-
     }
 }
