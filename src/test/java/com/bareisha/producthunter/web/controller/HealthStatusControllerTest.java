@@ -23,6 +23,9 @@ import java.util.Map;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Test for {@link HealthStatusController}
+ */
 @SpringBootTest(classes = {HealthStatusTestConfiguration.class})
 @EnableAutoConfiguration
 @RunWith(SpringRunner.class)
