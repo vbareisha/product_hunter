@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true)
-public class ProductServiceImpl implements IProductService<ProductDto> {
+public class ProductService implements IProductService<ProductDto> {
 
     private final IProductRepository productRepository;
 
@@ -27,9 +27,9 @@ public class ProductServiceImpl implements IProductService<ProductDto> {
     private final IConverter<Product, ProductDto> productProductDtoIConverter;
 
     @Autowired
-    public ProductServiceImpl(IProductRepository productRepository,
-                              @Qualifier("procuctDtoToProductConverter") IConverter<ProductDto, Product> productDtoProductIConverter,
-                              @Qualifier("productToProductDtoConverter") IConverter<Product, ProductDto> productProductDtoIConverter) {
+    public ProductService(IProductRepository productRepository,
+                          @Qualifier("procuctDtoToProductConverter") IConverter<ProductDto, Product> productDtoProductIConverter,
+                          @Qualifier("productToProductDtoConverter") IConverter<Product, ProductDto> productProductDtoIConverter) {
         this.productRepository = productRepository;
         this.productDtoProductIConverter = productDtoProductIConverter;
         this.productProductDtoIConverter = productProductDtoIConverter;

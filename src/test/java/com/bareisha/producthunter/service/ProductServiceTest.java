@@ -17,14 +17,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 import static com.bareisha.producthunter.utils.Util.getProductDtos;
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.toList;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest(classes = ProductServiceImplConfiguration.class)
+@SpringBootTest(classes = ProductServiceTestConfiguration.class)
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
-public class ProductServiceImplTest {
+public class ProductServiceTest {
 
     @MockBean
     private IProductRepository productRepository;

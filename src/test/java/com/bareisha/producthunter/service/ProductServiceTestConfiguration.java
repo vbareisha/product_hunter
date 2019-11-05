@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 @TestConfiguration
 @ComponentScan(basePackages = {"com.bareisha.producthunter.service",
         "com.bareisha.producthunter.core.converter"})
-public class ProductServiceImplConfiguration {
+public class ProductServiceTestConfiguration {
 
     @Bean("productDtoProductIConverter")
     public IConverter<ProductDto, Product> productDtoProductIConverter() {
